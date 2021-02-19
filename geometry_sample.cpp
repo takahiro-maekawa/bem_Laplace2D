@@ -124,7 +124,7 @@ vector<Source> Source_geometry_include_sample(double a, double b, double offset_
     v[i] = i;
   }
 
-  vector<vector<double>> positions = quarter_positions(a + sqrt(offset_c) * offset_c - offset_r, b + offset_c +  offset_r);
+  vector<vector<double>> positions = quarter_positions(a + sqrt(2.) * offset_c - offset_r, b + offset_c +  offset_r);
   for (int i = 0; i<Sources.size(); ++i){
     Sources[i].position ={positions[i][0] - offset_c, positions[i][1] - offset_c};
   }
