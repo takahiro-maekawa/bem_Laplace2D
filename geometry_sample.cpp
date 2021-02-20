@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <fstream>
 #include "geometry_sample.h"
 #include "geometry_common.h"
 
