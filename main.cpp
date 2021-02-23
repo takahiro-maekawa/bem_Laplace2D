@@ -53,7 +53,7 @@ int main(){
   vector<Element> Elements = Element_geometry_include_sample(2, 5, 4, 15);
 
   // in geometry_sample.cpp
-  vector<Source> Sources = Source_geometry_include_sample(2, 5, 2, 3);
+  vector<Source> Sources = Source_geometry_include_sample(2, 5, 2, 2);
 
   //in solve.cpp
   VectorXd beta_vector = solve_problem_and_get_beta_vector(Elements, Sources);

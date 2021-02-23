@@ -8,6 +8,18 @@
 
 using namespace std;
 
+// new added
+// called in make_Gmat
+//対角成分に微小値を足す
+void avoid_diverge_hack(MatrixXd& M){
+  int n = M.innerSize();
+  double eps =1e-10;
+
+  for (int i=0; i<n; ++i){
+    M(i,i) = M(i,i) + eps;
+  }
+}
+
 //called in make_coeff_matrix_proto
 //[L]の計算 (文献参照)
 MatrixXd make_Lmat(vector<Element> Elements, int n_elem){
@@ -27,7 +39,7 @@ MatrixXd make_Lmat(vector<Element> Elements, int n_elem){
 }
 
 //called in make_coeff_matrix_proto
-//calls return_eta_weights[integralGL], insert_1d_position[integralGL], green_func[general_func],
+//calls return_eta_weights[integralGL], insert_1d_position[integralGL], green_func[general_func], avoid_diverge_hack
 //[G]の計算　(文献参照)
 MatrixXd make_Gmat(vector<Element> Elements, vector<Source> Sources, int n_elem, int n_source){
   MatrixXd G_mat(n_source, n_elem);
@@ -55,6 +67,8 @@ MatrixXd make_Gmat(vector<Element> Elements, vector<Source> Sources, int n_elem,
       G_mat(j,m) = G_mat(j,m) * Elements[m].S / 2.0;
     }
   }
+
+  avoid_diverge_hack(G_mat);
   return G_mat;
 }
 
@@ -135,7 +149,7 @@ void make_coeff_matrix_proto(MatrixXd& K_mat, MatrixXd& G_mat, MatrixXd& R_mat, 
   int n_source = Sources.size();
 
   MatrixXd L_mat = make_Lmat(Elements, n_elem);
-  G_mat = make_Gmat(Elements, Sources, n_elem,n_source);
+  G_mat = make_Gmat(Elements, Sources, n_elem, n_source);
   MatrixXd F_mat = make_Fmat(Elements, Sources, n_elem,n_source);
   R_mat = make_R_mat_from_G_L(G_mat, L_mat);
 

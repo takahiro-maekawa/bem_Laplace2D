@@ -138,7 +138,7 @@ vector<Source> Source_geometry_include_sample(double a, double b, double offset_
   for (int i = 0; i<Sources.size(); ++i){
     Sources[i].position ={positions[i][0] - offset_c, positions[i][1] - offset_c};
   }
-  Sources[5].position = {Sources[5].position[0] - 0.2, Sources[5].position[1] - 0.15 };
+  //Sources[5].position = {Sources[5].position[0] - 0.2, Sources[5].position[1] - 0.15 };
 
   string filepath = "sources.csv";
   ofstream writing_file;
