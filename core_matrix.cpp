@@ -10,7 +10,7 @@ using namespace std;
 
 // new added
 // called in make_Gmat
-//対角成分に微小値を足す
+// 対角成分に微小値を足す
 void avoid_diverge_hack(MatrixXd& M){
   int n = M.innerSize();
   double eps =1e-10;
